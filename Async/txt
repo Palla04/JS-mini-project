@@ -1,0 +1,164 @@
+// Execution context of js
+
+In JavaScript, the execution context is the environment within which JavaScript code is executed. There are different types of execution contexts, including the global execution context, function execution context, and eval execution context. Here, we'll focus on the global execution context.
+
+Global Execution Context
+The global execution context is the default or base execution context in which JavaScript 
+code runs. It is created when the JavaScript engine starts executing a script file. There 
+can only be one global execution context in a JavaScript program.
+
+Key Components
+Global Object: In browsers, the global object is the window object. In Node.js, it is the 
+global object. The global object contains built-in objects, functions, and any globally defined 
+variables or functions.
+this Keyword: In the global execution context, this refers to the global object.
+Creation Phase
+When the global execution context is created, it goes through two main phases:
+
+Creation Phase:
+
+Global Object Creation: The global object is created.
+this Binding: this is bound to the global object.
+Memory Allocation: Memory is allocated for variables and functions declared in the global scope. Variables are set to undefined, and functions are stored in memory.
+Execution Phase:
+
+Code Execution: The JavaScript code is executed line by line. Variables are assigned values, and functions are invoked.
+Example
+Here's a simple example to illustrate the global execution context:
+
+// Global scope
+var globalVar = "I am a global variable";
+
+function globalFunction() {
+    console.log("I am a global function");
+}
+
+console.log(this); // Outputs: Window (in a browser) or Global (in Node.js)
+console.log(globalVar); // Outputs: I am a global variable
+globalFunction(); // Outputs: I am a global function
+
+
+Global Execution Context in Action
+When you run the script:
+
+Creation Phase:
+
+The global object is created.
+this is bound to the global object.
+Memory is allocated for globalVar (set to undefined) and globalFunction.
+Execution Phase:
+
+globalVar is assigned the value "I am a global variable".
+globalFunction is defined.
+console.log(this) outputs the global object.
+console.log(globalVar) outputs "I am a global variable".
+globalFunction() is invoked, and the message "I am a global function" is logged.
+
+
+
+//**  Call Stack
+
+The call stack is a mechanism in JavaScript that helps the interpreter keep track of function calls. It operates as a stack data structure, following the Last In, First Out (LIFO) principle. Understanding the call stack is crucial for debugging and optimizing JavaScript code, as it plays a key role in how the JavaScript engine executes code.
+
+Key Concepts
+Stack Data Structure: The call stack is a stack data structure, meaning the last function called is the first one to complete. It has two primary operations:
+
+Push: Adding a function call to the stack.
+Pop: Removing the top function call from the stack when it returns.
+Execution Context: Each function invocation creates a new execution context. The global execution context is the bottom of the stack, and each function call adds a new context on top.
+
+How the Call Stack Works
+Global Execution Context: When a script starts, the global execution context is pushed onto the call stack.
+Function Calls: When a function is called, its execution context is pushed onto the stack.
+Returning from Functions: When a function completes, its execution context is popped from the stack, and control returns to the previous context.
+Example
+Consider the following code:
+    function firstFunction() {
+    console.log("Inside firstFunction");
+    secondFunction();
+    console.log("Back to firstFunction");
+}
+
+function secondFunction() {
+    console.log("Inside secondFunction");
+    thirdFunction();
+    console.log("Back to secondFunction");
+}
+
+function thirdFunction() {
+    console.log("Inside thirdFunction");
+}
+
+firstFunction();
+console.log("Global context");
+
+
+Call Stack Execution
+Let's step through the call stack operations for this example:
+
+Global Execution Context: Pushed onto the stack.
+
+Stack: [Global]
+firstFunction Call: Pushed onto the stack.
+
+Stack: [Global, firstFunction]
+Output: Inside firstFunction
+secondFunction Call: Pushed onto the stack.
+
+Stack: [Global, firstFunction, secondFunction]
+Output: Inside secondFunction
+thirdFunction Call: Pushed onto the stack.
+
+Stack: [Global, firstFunction, secondFunction, thirdFunction]
+Output: Inside thirdFunction
+thirdFunction Return: Popped from the stack.
+
+Stack: [Global, firstFunction, secondFunction]
+Output: Back to secondFunction
+secondFunction Return: Popped from the stack.
+
+Stack: [Global, firstFunction]
+Output: Back to firstFunction
+firstFunction Return: Popped from the stack.
+
+Stack: [Global]
+Output: Global context
+
+
+//  Stack Overflow
+If functions keep calling each other without returning, the call 
+stack can grow indefinitely, leading to a stack overflow error. For example:
+
+   function recursiveFunction() {
+    recursiveFunction();
+   }
+
+   recursiveFunction();
+
+This code will result in a RangeError: Maximum call stack size 
+exceeded because recursiveFunction calls itself indefinitely, 
+pushing new execution contexts onto the stack until it runs out of space.
+
+
+
+// ** Synchronous JavaScript
+Synchronous JavaScript refers to the execution model where code is executed
+in a sequential order, one statement at a time. Each operation must complete 
+before the next one begins. This can lead to blocking behavior if an operation takes
+a long time to complete, such as network requests or heavy computations, causing the 
+browser to become unresponsive until the operation finishes.
+
+Single-threaded JavaScript
+JavaScript is single-threaded, meaning it has a single call stack and can perform 
+only one task at a time. This single thread handles all operations, including rendering 
+the web page and handling user events. While this simplifies programming, it can lead to 
+performance bottlenecks if long-running tasks are not managed properly. To mitigate this, 
+JavaScript employs asynchronous programming techniques like callbacks, promises, and async/await, 
+allowing tasks to run in the background while the main thread remains responsive.
+
+
+
+
+
+
+
