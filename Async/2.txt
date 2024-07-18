@@ -1,0 +1,61 @@
+// ** Callback
+
+A callback is a function passed as an argument to another function, which is then invoked inside the outer function 
+to complete some kind of routine or action. Callbacks are a way to ensure that certain code is executed only after 
+another code has finished executing, which is particularly useful in handling asynchronous operations.
+
+
+Asynchronous Operations: Callbacks are commonly used to handle asynchronous tasks like network requests, file operations, or timed events. 
+By using callbacks, you can start an operation and specify a function to be executed when the operation completes, without blocking the main 
+execution thread.
+
+Higher-Order Functions: A function that accepts another function as an argument or returns a function as a result is called a higher-order 
+function. Callbacks leverage this concept by passing functions as arguments.
+
+
+Synchronous vs. Asynchronous Callbacks
+
+    Synchronous Callback: Executed immediately during the execution of the higher-order function. The higher-order function completes only after 
+    the callback has been executed.
+
+    Asynchronous Callback: Executed after the execution of the higher-order function has completed and some asynchronous operation has finished.
+    
+    
+Example of a Synchronous Callback
+
+    function greeting(name) {
+        console.log('Hello ' + name);
+    }
+
+    function processUserInput(callback) {
+        var name = 'John Doe';
+        callback(name);
+    }
+
+    processUserInput(greeting); // Logs: "Hello John Doe"
+
+In this example, greeting is passed as a callback to processUserInput and is executed synchronously within processUserInput.
+
+Example of an Asynchronous Callback
+
+    function fetchData(callback) {
+        setTimeout(() => {
+            const data = 'Some data';
+            callback(data);
+        }, 1000);
+    }
+    
+    function handleData(data) {
+        console.log(data);
+    }
+    
+    fetchData(handleData); // Logs: "Some data" after 1 second
+    
+In this example, fetchData simulates an asynchronous operation using setTimeout. The handleData function is passed as a callback and is executed after the simulated data fetch operation completes.
+
+// Callback Hell :- 
+    When multiple asynchronous operations are nested within each other, it can lead to deeply nested and hard-to-read code.
+
+Avoiding Callback Hell
+To avoid callback hell and improve code readability, modern JavaScript uses promises and async/await, which provide more elegant 
+ways to handle asynchronous operations.
