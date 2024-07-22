@@ -1,0 +1,16 @@
+//V8 translates JavaScript code directly into machine code* so that computers 
+//can actually understand it, then it executes the translated, or compiled, code.
+//V8 optimizes JavaScript execution as well. *Machine code is a language that CPUs 
+//can understand.
+
+V8 engine is the backbone of Google Chrome and other Chromium-based web browsers. 
+V8 engine is distinct from other JS engines as it directly converts scripts to machine 
+code without producing intermediate code. 
+
+
+
+0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete.
