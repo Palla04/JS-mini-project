@@ -17,19 +17,6 @@ console.log(user.getUserDetails());
 console.log(this);
 
 
-const user2 = { 
-  // Object Properties
-   userName : "Pallabi",
-   loginCount: 8,
-   signedIn : true,
- 
- // Object Method
-   getUserDetails : function(){
-        console.log(`Username: ${this.userName}`);    // 'this' refers to the 'user' object or the current Object
-        console.log(this);
-   }
-}
-
 
 function User(username, loginCount, isLoggedIn){
   this.username = username
