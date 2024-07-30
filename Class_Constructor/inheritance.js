@@ -22,8 +22,8 @@ class Teacher extends User{
 }
 
 const Pallabi = new Teacher("Pallabi", "Pall@gamil", 123)
-
 Pallabi.addCourse()
+Pallabi.logMe()
 
 const Hello = new User("Patit")
 Hello.logMe()
