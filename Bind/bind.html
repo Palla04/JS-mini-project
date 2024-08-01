@@ -16,12 +16,17 @@
 
             document
             .querySelector('button')
-            .addEventListener('click', this.handleClick
+            .addEventListener('click', this.handleClick 
             .bind(this))
+            //In JavaScript, the bind method is used to explicitly set the 'this' context for a function. 
+            // By default, the this context within a function can be different based on where and how the 
+            //function is called. In the case of event listeners, this often refers to the element that triggered the event, not the instance of the class.
         }
         handleClick(){
             console.log("button clicked");
             console.log(this);
+
+            //If you don't use bind, the this inside handleClick will refer to the button element that triggered the event, not the React instance.
         }
     }
 
