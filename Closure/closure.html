@@ -6,25 +6,57 @@
     <title>Document</title>
 </head>
 <body style="color: #fff; background-color: #212121;" >
-    hello
+    <h1>Hello</h1>
 </body>
 <script>
     // function init(){
     //     let name = "Mozilla";
     //     function displayName(){
     //         console.log(name);
-
             
     //     }
     //     displayName();
     // }
     // init()
 
+//Lexical Scoping
+        //Lexical scope refers to the scope of variables as determined 
+        //by the structure of the code itself, specifically where variables 
+        //and functions are declared. This means that the accessibility of 
+        //variables is controlled by their location in the source code.
+    // function outer(){
+    //     let username = "Riya"
+    //     // console.log(secret);
+        
+    //     function inner(){
+    //         let secret = "my123"
+    //         console.log("inner", username);
+    //     }
+    //     function innerTwo(){
+    //         console.log("innerTwo", username);
+    //         console.log(secret);
+            
+    //     }
+    //     inner()
+    //     innerTwo()
+    // }
+    // outer()
+    // console.log("TOO OUTER", username);
 
-    function outer(){
-        let username = "Riya"
+//closure
+             //A closure is a feature in JavaScript where an inner 
+             //function has access to the outer (enclosing) function's 
+             //variables, even after the outer function has returned.
+    function makeFun(){
+        const name = "Mozilla";
+        function displayName(){
+            console.log(name); 
+        }
+        return displayName;
     }
-    console.log(username);
+
+    const myFun = makeFun();
+    myFun();
     
 </script>
 </html>
